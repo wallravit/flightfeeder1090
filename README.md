@@ -12,20 +12,6 @@ A complete Docker Compose setup for running [dump1090](https://github.com/mutabi
 
 ---
 
-## Project Structure
-
-```
-.
-├── docker-compose.yml
-├── fr24feed/
-│   └── Dockerfile
-├── dump1090/
-│   └── Dockerfile
-└── fr24feed.ini
-```
-
----
-
 ## Getting Started
 
 ### 1. Prerequisites
