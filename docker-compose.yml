@@ -5,7 +5,7 @@ services:
     container_name: dump1090
     restart: unless-stopped
     devices:
-      - /dev/bus/usb:/dev/bus/usb:ro
+      - /dev/bus/usb/001/003:/dev/bus/usb/001/003:ro
     ports:
       - "8080:8080"
       - "30005:30005"

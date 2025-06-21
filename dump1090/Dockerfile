@@ -1,20 +1,12 @@
 FROM debian:bullseye-slim
 
 RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-      build-essential \
-      pkg-config \
-      libusb-1.0-0-dev \
-      librtlsdr0 \
-      rtl-sdr && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    dump1090-mutability \
+    --no-install-recommends && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-COPY dump1090-1.14 /src/dump1090
+EXPOSE 8080 30001 30002 30003 30004 30005 30104
 
-RUN cd /src/dump1090 && make
-RUN cp /src/dump1090/dump1090 /usr/local/bin/
-
-EXPOSE 8080 30005 30002
-
-ENTRYPOINT ["/usr/local/bin/dump1090"]
-CMD ["--net", "--gain", "max", "--device-index", "0"]
+CMD ["dump1090-mutability", "--net", "--net-http-port", "8080"]
