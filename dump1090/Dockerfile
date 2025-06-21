@@ -5,8 +5,8 @@ RUN apt-get update && \
       build-essential \
       pkg-config \
       libusb-1.0-0-dev \
-      librtlsdr-dev \
-      rtl-sdr \
+      librtlsdr0 \
+      rtl-sdr && \
     rm -rf /var/lib/apt/lists/*
 
 COPY dump1090-1.14 /src/dump1090
