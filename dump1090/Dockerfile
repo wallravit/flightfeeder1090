@@ -4,6 +4,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
       git \
       build-essential \
+      pkg-config \
       libusb-1.0-0-dev \
       librtlsdr0 \
       rtl-sdr \
