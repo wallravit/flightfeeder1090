@@ -1,15 +1,20 @@
 FROM debian:bullseye-slim
 
-COPY dump1090-mutability_1.14_armhf.deb /tmp/dump1090-mutability_1.14_armhf.deb
 RUN apt-get update && \
-    apt-get install -y \
-        rtl-sdr \
-        libusb-1.0-0 \
-        --no-install-recommends
+    apt-get install -y --no-install-recommends \
+      build-essential \
+      pkg-config \
+      libusb-1.0-0-dev \
+      librtlsdr-dev \
+      rtl-sdr \
+    rm -rf /var/lib/apt/lists/*
 
-RUN apt-get install -y /tmp/dump1090-mutability_1.14_armhf.deb && \
-    rm /tmp/dump1090-mutability_1.14_armhf.deb
+COPY dump1090-1.14 /src/dump1090
+
+RUN cd /src/dump1090 && make
+RUN cp /src/dump1090/dump1090 /usr/local/bin/
 
 EXPOSE 8080 30005 30002
 
-ENTRYPOINT ["/usr/bin/dump1090-mutability", "--net", "--interactive", "--gain", "max"]
+ENTRYPOINT ["/usr/local/bin/dump1090"]
+CMD ["--net", "--gain", "max", "--device-index", "0"]
