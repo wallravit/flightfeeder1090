@@ -10,7 +10,7 @@ RUN apt-get update && \
       ca-certificates && \
     rm -rf /var/lib/apt/lists/*
 
-RUN git clone --depth 1 https://github.com/mutability/dump1090.git /src/dump1090 && \
+RUN git clone --depth 1 https://github.com/flightaware/dump1090.git /src/dump1090 && \
     cd /src/dump1090 && \
     make
 
