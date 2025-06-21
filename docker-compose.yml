@@ -1,0 +1,26 @@
+services:
+  dump1090:
+    build:
+      context: ./dump1090
+    container_name: dump1090
+    restart: unless-stopped
+    devices:
+      - /dev/bus/usb:/dev/bus/usb
+    ports:
+      - "8080:8080"
+      - "30005:30005"
+      - "30002:30002"
+    # platform: linux/arm/v7
+
+  fr24feed:
+    build:
+      context: ./fr24feed
+    container_name: fr24feed
+    restart: unless-stopped
+    depends_on:
+      - dump1090
+    volumes:
+      - ./fr24feed.ini:/etc/fr24feed.ini
+    environment:
+      - TZ=Asia/Bangkok
+    # platform: linux/arm/v7
