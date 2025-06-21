@@ -6,12 +6,12 @@ RUN apt-get update && \
       build-essential \
       pkg-config \
       libusb-1.0-0-dev \
-      librtlsdr0 \
+      librtlsdr-dev \
       rtl-sdr \
       ca-certificates && \
     rm -rf /var/lib/apt/lists/*
 
-RUN git clone --depth 1 https://github.com/flightaware/dump1090.git /src/dump1090 && \
+RUN git clone --depth 1 https://github.com/antirez/dump1090.git /src/dump1090 && \
     cd /src/dump1090 && \
     make
 
