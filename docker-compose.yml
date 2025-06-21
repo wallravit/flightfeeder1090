@@ -5,7 +5,7 @@ services:
     container_name: dump1090
     restart: unless-stopped
     devices:
-      - /dev/bus/usb:/dev/bus/usb
+      - /dev/bus/usb:/dev/bus/usb:ro
     ports:
       - "8080:8080"
       - "30005:30005"
@@ -20,7 +20,7 @@ services:
     depends_on:
       - dump1090
     volumes:
-      - ./fr24feed.ini:/etc/fr24feed.ini
+      - ./fr24feed/fr24feed.ini:/etc/fr24feed.ini
     environment:
       - TZ=Asia/Bangkok
     # platform: linux/arm/v7
